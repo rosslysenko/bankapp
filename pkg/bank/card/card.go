@@ -53,3 +53,13 @@ func Total(cards []types.Card) types.Money {
 	}
 	return total
 }
+
+func PaymentSources(cards []types.Card) []types.PaymentSource {
+	var paySource []types.PaymentSource
+	for _, card := range cards {
+		if card.Active && card.Balance > 0 {
+			paySource = append(paySource, types.PaymentSource{Type: "card", Number: "5058 xxxx xxxx 8888", Balance: card.Balance})
+		}
+	}
+	return paySource
+}
